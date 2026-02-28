@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
+/* Base CSS variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base colors - will be overridden by themes */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 0 0% 0%;
+  --radius: 0.5rem;
+  --gradient-start: #000000;
+  --gradient-end: #333333;
+  --card-bg: 0 0% 100%;
+  --card-border: 0 0% 90%;
+  --card-hover: 0 0% 98%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Matcha Green - Light Theme - Good Contrast */
+[data-theme="matcha"] {
+  --background: 120 30% 99%;
+  --foreground: 120 70% 12%;
+  --primary: 120 65% 35%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 120 30% 94%;
+  --secondary-foreground: 120 55% 18%;
+  --muted: 120 25% 95%;
+  --muted-foreground: 120 35% 30%;
+  --accent: 120 35% 90%;
+  --accent-foreground: 120 55% 18%;
+  --border: 120 25% 82%;
+  --input: 120 25% 92%;
+  --ring: 120 65% 35%;
+  --gradient-start: #1e4b2e;
+  --gradient-end: #6a9c6e;
+  --card-bg: 120 30% 99%;
+  --card-border: 120 25% 82%;
+  --card-hover: 120 30% 95%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Cherry Red - Dark Theme - FIXED: Better contrast */
+[data-theme="cherry"] {
+  --background: 0 25% 8%;
+  --foreground: 0 15% 98%;
+  --primary: 0 85% 65%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 35% 18%;
+  --secondary-foreground: 0 20% 98%;
+  --muted: 0 30% 15%;
+  --muted-foreground: 0 20% 85%; /* Lighter for better contrast */
+  --accent: 0 40% 22%;
+  --accent-foreground: 0 20% 98%;
+  --destructive: 0 90% 65%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 30% 28%; /* Lighter border */
+  --input: 0 30% 18%;
+  --ring: 0 85% 65%;
+  --gradient-start: #dc2626;
+  --gradient-end: #b91c1c;
+  --card-bg: 0 25% 10%;
+  --card-border: 0 30% 22%;
+  --card-hover: 0 30% 15%;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Blossom Pink - Light Theme - Good Contrast */
+[data-theme="blossom"] {
+  --background: 340 50% 99%;
+  --foreground: 340 70% 18%;
+  --primary: 340 80% 65%;
+  --primary-foreground: 340 50% 12%;
+  --secondary: 340 40% 95%;
+  --secondary-foreground: 340 60% 22%;
+  --muted: 340 35% 96%;
+  --muted-foreground: 340 45% 35%;
+  --accent: 340 45% 92%;
+  --accent-foreground: 340 60% 22%;
+  --border: 340 35% 85%;
+  --input: 340 35% 94%;
+  --ring: 340 80% 65%;
+  --gradient-start: #f472b6;
+  --gradient-end: #fb7185;
+  --card-bg: 340 45% 99%;
+  --card-border: 340 35% 85%;
+  --card-hover: 340 40% 96%;
+}
+
+/* Sky Blue - Light Theme - Good Contrast */
+[data-theme="sky"] {
+  --background: 200 45% 99%;
+  --foreground: 200 85% 13%;
+  --primary: 200 95% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 200 40% 95%;
+  --secondary-foreground: 200 75% 22%;
+  --muted: 200 35% 96%;
+  --muted-foreground: 200 55% 32%;
+  --accent: 200 45% 92%;
+  --accent-foreground: 200 75% 22%;
+  --border: 200 35% 84%;
+  --input: 200 35% 94%;
+  --ring: 200 95% 45%;
+  --gradient-start: #0369a1;
+  --gradient-end: #38bdf8;
+  --card-bg: 200 40% 99%;
+  --card-border: 200 35% 84%;
+  --card-hover: 200 40% 96%;
+}
+
+/* Teal Green - Dark Theme - FIXED: Better contrast */
+[data-theme="teal"] {
+  --background: 180 50% 7%;
+  --foreground: 180 15% 98%;
+  --primary: 180 80% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 180 45% 16%;
+  --secondary-foreground: 180 20% 98%;
+  --muted: 180 40% 13%;
+  --muted-foreground: 180 25% 85%; /* Lighter for better contrast */
+  --accent: 180 50% 20%;
+  --accent-foreground: 180 20% 98%;
+  --destructive: 0 90% 65%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 180 40% 24%; /* Lighter border */
+  --input: 180 40% 15%;
+  --ring: 180 80% 50%;
+  --gradient-start: #0d9488;
+  --gradient-end: #14b8a6;
+  --card-bg: 180 45% 9%;
+  --card-border: 180 40% 20%;
+  --card-hover: 180 45% 13%;
+}
+
+/* Utility classes */
+.border-border {
+  border-color: hsl(var(--border));
+}
+
+.bg-background {
+  background-color: hsl(var(--background));
+}
+
+.text-foreground {
+  color: hsl(var(--foreground));
+}
+
+.bg-card {
+  background-color: hsl(var(--card-bg));
+}
+
+.border-card-border {
+  border-color: hsl(var(--card-border));
+}
+
+.hover\:bg-card-hover:hover {
+  background-color: hsl(var(--card-hover));
+}
+
+.bg-theme-gradient {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+.bg-primary {
+  background-color: hsl(var(--primary));
+}
+
+.text-primary {
+  color: hsl(var(--primary));
+}
+
+.bg-primary\/10 {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.border-primary {
+  border-color: hsl(var(--primary));
+}
+
+/* Dark theme specific utility overrides for better contrast */
+[data-theme="cherry"] .text-muted-foreground,
+[data-theme="teal"] .text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+  opacity: 0.95; /* Ensure full opacity */
+}
+
+[data-theme="cherry"] .bg-muted,
+[data-theme="teal"] .bg-muted {
+  background-color: hsl(var(--muted) / 0.8);
 }
